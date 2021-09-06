@@ -31,14 +31,14 @@ resolution = (30, 45)
 episodes_to_watch = 10
 
 model_savefile = "./model/doom-model.pth"
-save_model = False
-load_model = True
+save_model = True
+load_model = False
 skip_learning = False
 
 # scenarious files path for env testing
-config_file_path = "scenarios/simpler_basic.cfg"
+# config_file_path = "scenarios/simpler_basic.cfg"
 # config_file_path = "scenarios/rocket_basic.cfg"
-# config_file_path = "scenarios/basic.cfg"
+config_file_path = "scenarios/basic.cfg"
 
 
 # Uses GPU if available
@@ -238,22 +238,18 @@ class DQNAgent:
         dones = batch[:, 4].astype(bool)
         not_dones = ~dones
 
-        row_idx = np.arange(self.batch_size)  # used for indexing the batch
+        row_idx = np.arange(self.batch_size)
 
-        # value of the next states with double q learning
-        # see https://arxiv.org/abs/1509.06461 for more information on double q learning
         with torch.no_grad():
             next_states = torch.from_numpy(next_states).float().to(DEVICE)
             idx = row_idx, np.argmax(self.q_net(next_states).cpu().data.numpy(), 1)
             next_state_values = self.target_net(next_states).cpu().data.numpy()[idx]
             next_state_values = next_state_values[not_dones]
 
-        # this defines y = r + discount * max_a q(s', a)
         q_targets = rewards.copy()
         q_targets[not_dones] += self.discount * next_state_values
         q_targets = torch.from_numpy(q_targets).float().to(DEVICE)
 
-        # this selects only the q values of the actions taken
         idx = row_idx, actions
         states = torch.from_numpy(states).float().to(DEVICE)
         action_values = self.q_net(states)[idx].float().to(DEVICE)
