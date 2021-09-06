@@ -31,8 +31,8 @@ resolution = (30, 45)
 episodes_to_watch = 10
 
 model_savefile = "./model/doom-model.pth"
-save_model = True
-load_model = False
+save_model = False
+load_model = True
 skip_learning = False
 
 # scenarious files path for env testing
