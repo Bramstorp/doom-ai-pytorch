@@ -1,0 +1,3 @@
+tqdm==4.62.2
+scikit-image==0.18.3
+vizdoom==1.1.8
