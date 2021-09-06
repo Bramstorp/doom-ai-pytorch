@@ -75,7 +75,7 @@ def test(game, agent):
     for test_episode in trange(test_episodes_per_epoch, leave=False):
         game.new_episode()
         while not game.is_episode_finished():
-            state = preprocess(game.get_state().screen_buffer)
+            state = image_preprocessing(game.get_state().screen_buffer)
             best_action_index = agent.get_action(state)
 
             game.make_action(actions[best_action_index], frame_repeat)
