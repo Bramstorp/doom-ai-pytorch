@@ -1,3 +1,5 @@
+import torch
+
 from tqdm import trange
 from time import sleep, time
 import numpy as np
