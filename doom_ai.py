@@ -10,7 +10,6 @@ from vizdoom import Mode
 from tqdm import trange
 
 from doom_env import create_doom_env, image_preprocessing, DEVICE
-from doom_test import test
 from doom_run import run
 from doom_agent import DQNAgent
 
@@ -46,10 +45,10 @@ if __name__ == '__main__':
 
     if not skip_learning:
         agent, game = run(game, agent, actions, num_epochs=train_epochs, frame_repeat=frame_repeat,
-                          steps_per_epoch=learning_steps_per_epoch)
+                          steps_per_epoch=learning_steps_per_epoch, save_model=save_model, model_savefile=model_savefile)
 
         print("======================================")
-        print("Training finished. It's time to watch!")
+        print("Training finished")
 
     game.close()
     game.set_window_visible(True)

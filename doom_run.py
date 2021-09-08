@@ -3,8 +3,9 @@ from time import sleep, time
 import numpy as np
 
 from doom_env import image_preprocessing
+from doom_test import test
 
-def run(game, agent, actions, num_epochs, frame_repeat, steps_per_epoch=2000):
+def run(game, agent, actions, num_epochs, frame_repeat, steps_per_epoch=2000, save_model=False, model_savefile=""):
     start_time = time()
 
     for epoch in range(num_epochs):
@@ -41,11 +42,11 @@ def run(game, agent, actions, num_epochs, frame_repeat, steps_per_epoch=2000):
         print("Results: mean: %.1f +/- %.1f," % (train_scores.mean(), train_scores.std()),
               "min: %.1f," % train_scores.min(), "max: %.1f," % train_scores.max())
 
-        test(game, agent)
+        test(game, agent, actions)
         if save_model:
-            print("Saving the network weights to:", model_savefile)
+            print("Saving the network to model file:", model_savefile)
             torch.save(agent.q_net, model_savefile)
-        print("Total elapsed time: %.2f minutes" % ((time() - start_time) / 60.0))
+        print(f"Total elapsed time: {((time() - start_time) / 60.0)} minutes")
 
     game.close()
     return agent, game

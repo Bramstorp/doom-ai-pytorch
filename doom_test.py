@@ -1,10 +1,15 @@
 from tqdm import trange
+import numpy as np
+
+from doom_env import image_preprocessing
+
+frame_repeat = 12
 
 # Training regime
 test_episodes_per_epoch = 100
 
-def test(game, agent):
-    print("\nTesting...")
+def test(game, agent, actions):
+    print("\nAi Testing...")
     test_scores = []
     for test_episode in trange(test_episodes_per_epoch, leave=False):
         game.new_episode()

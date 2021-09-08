@@ -1,4 +1,5 @@
 import random
+import torch
 
 import torch.nn as nn
 import torch.optim as optim
@@ -24,13 +25,13 @@ class DQNAgent:
         self.criterion = nn.MSELoss()
 
         if load_model:
-            print("Loading model from: ", model_savefile)
+            print("Loading model: ", model_savefile)
             self.q_net = torch.load(model_savefile)
             self.target_net = torch.load(model_savefile)
             self.epsilon = self.epsilon_min
 
         else:
-            print("Initializing new model")
+            print("Initializing new model...")
             self.q_net = DuelQNet(action_size).to(DEVICE)
             self.target_net = DuelQNet(action_size).to(DEVICE)
 
