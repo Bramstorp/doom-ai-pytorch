@@ -8,6 +8,7 @@ import torch.nn as nn
 from vizdoom import Mode
 
 from tqdm import trange
+from time import sleep
 
 from doom_env import create_doom_env, image_preprocessing, DEVICE
 from doom_run import run
@@ -23,14 +24,14 @@ replay_memory_size = 10000
 # Neural Network Batch Size
 batch_size = 64
 
-# Other parameters
+
 frame_repeat = 12
 episodes_to_watch = 10
 
 model_savefile = "./model/doom-model.pth"
-save_model = True
-load_model = False
-skip_learning = False
+save_model = False
+load_model = True
+skip_learning = True
 
 
 

@@ -6,9 +6,7 @@ import numpy as np
 from vizdoom import Mode
 
 # scenarious files path for env testing
-# config_file_path = "scenarios/simpler_basic.cfg"
-# config_file_path = "scenarios/rocket_basic.cfg"
-config_file_path = "scenarios/basic.cfg"
+config_file_path = "scenarios/deadly_corridor.cfg"
 
 resolution = (30, 45)
 

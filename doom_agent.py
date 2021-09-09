@@ -10,6 +10,8 @@ import numpy as np
 from doom_model import DuelQNet
 from doom_env import DEVICE
 
+model_savefile = "./model/doom-model.pth"
+
 
 class DQNAgent:
     def __init__(self, action_size, memory_size, batch_size, discount_factor, 
