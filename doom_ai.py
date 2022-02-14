@@ -26,7 +26,7 @@ batch_size = 64
 
 
 frame_repeat = 12
-episodes_to_watch = 10
+episodes_to_watch = 50
 
 model_savefile = "./model/doom-model.pth"
 save_model = False
