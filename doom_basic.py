@@ -3,7 +3,7 @@ import random
 import time
 
 game = DoomGame()
-game.load_config("scenarios/basic.cfg")
+game.load_config("scenarios/deadly_corridor.cfg")
 game.init()
 
 shoot = [0, 0, 1]
