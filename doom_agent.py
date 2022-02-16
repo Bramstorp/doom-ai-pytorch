@@ -12,7 +12,6 @@ from doom_env import DEVICE
 
 model_savefile = "./model/doom-model.pth"
 
-
 class DQNAgent:
     def __init__(self, action_size, memory_size, batch_size, discount_factor, 
                  lr, load_model, epsilon=1, epsilon_decay=0.9996, epsilon_min=0.1):
