@@ -5,12 +5,10 @@ import numpy as np
 
 from vizdoom import Mode
 
-# scenarious files path for env testing
-config_file_path = "scenarios/deadly_corridor.cfg"
 
 resolution = (30, 45)
 
-def create_doom_env():
+def create_doom_env(config_file_path):
     game = vizdoom.DoomGame()
     game.load_config(config_file_path)
     game.set_window_visible(False)

@@ -9,6 +9,8 @@ from doom_run import run
 from doom_agent import DQNAgent
 from helper import plot
 
+from parameters import Parameters
+
 # Q-learing values
 learning_rate = 0.00025
 discount_factor = 0.99
@@ -22,23 +24,24 @@ batch_size = 64
 frame_repeat = 12
 episodes_to_watch = 50
 
-model_savefile = "./model/doom-model.pth"
-save_model = False
-load_model = True
-skip_learning = True
+model_savefile = "./model/100/doom-model.pth"
+config_file_path = "scenarios/deadly_corridor.cfg"
+save_model = True
+load_model = False
+skip_learning = False
 show_while_learning = False
 
 if __name__ == '__main__':
     plot_scores = []
     total_score = 0
 
-    game = create_doom_env()
+    game = create_doom_env(config_file_path)
     numbers_of_available_buttons = game.get_available_buttons_size()
     actions = [list(a) for a in it.product([0, 1], repeat=numbers_of_available_buttons)]
 
     agent = DQNAgent(len(actions), lr=learning_rate, batch_size=batch_size,
                      memory_size=replay_memory_size, discount_factor=discount_factor,
-                     load_model=load_model)
+                     load_model=load_model, model_savefile=model_savefile)
 
     if not skip_learning:
         agent, game = run(game, agent, actions, num_epochs=train_epochs, frame_repeat=frame_repeat,

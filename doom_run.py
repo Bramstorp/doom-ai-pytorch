@@ -21,15 +21,15 @@ def test(game, agent, actions):
             best_action_index = agent.get_action(state)
 
             game.make_action(actions[best_action_index], frame_repeat)
-        r = game.get_total_reward()
-        test_scores.append(r)
+        reward = game.get_total_reward()
+        test_scores.append(reward)
 
     test_scores = np.array(test_scores)
     print("Results: mean: %.1f +/- %.1f," % (
         test_scores.mean(), test_scores.std()), "min: %.1f" % test_scores.min(),
           "max: %.1f" % test_scores.max())
 
-def run(game, agent, actions, num_epochs, frame_repeat, steps_per_epoch=2000, save_model=False, model_savefile=""):
+def run(game, agent, actions, num_epochs, frame_repeat, steps_per_epoch=0, save_model=False, model_savefile=""):
     start_time = time()
 
     for epoch in range(num_epochs):
