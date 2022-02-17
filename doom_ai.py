@@ -21,7 +21,7 @@ replay_memory_size = 10000
 batch_size = 64
 frame_repeat = 12
 
-model_savefile = "./model/10/doom-model.pth"
+model_savefile = "./trained_models/10/doom-model.pth"
 config_file_path = "scenarios/deadly_corridor.cfg"
 LOG_DIR = './logs/log_corridor'
 save_model = True
