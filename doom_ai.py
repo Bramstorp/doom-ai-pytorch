@@ -9,27 +9,27 @@ from doom_run import run
 from doom_agent import DQNAgent
 from helper import plot
 
-from parameters import Parameters
 
 # Q-learing values
 learning_rate = 0.00025
 discount_factor = 0.99
-train_epochs = 5
+train_epochs = 10
 learning_steps_per_epoch = 2000
 replay_memory_size = 10000
-
-# Neural Network Batch Size
 batch_size = 64
-
 frame_repeat = 12
-episodes_to_watch = 50
 
-model_savefile = "./model/100/doom-model.pth"
+model_savefile = "./model/10/doom-model.pth"
 config_file_path = "scenarios/deadly_corridor.cfg"
+LOG_DIR = './logs/log_corridor'
 save_model = True
 load_model = False
 skip_learning = False
 show_while_learning = False
+testing_after_run = False
+
+# Testing
+episodes = 50
 
 if __name__ == '__main__':
     plot_scores = []
@@ -45,17 +45,18 @@ if __name__ == '__main__':
 
     if not skip_learning:
         agent, game = run(game, agent, actions, num_epochs=train_epochs, frame_repeat=frame_repeat,
-                          steps_per_epoch=learning_steps_per_epoch, save_model=save_model, model_savefile=model_savefile)
+                          steps_per_epoch=learning_steps_per_epoch, save_model=save_model, model_savefile=model_savefile, testing=testing_after_run)
 
         print("****************************")
         print("Training finished")
+        print("****************************")
 
     game.close()
     game.set_window_visible(True)
     game.set_mode(Mode.ASYNC_PLAYER)
     game.init()
 
-    for x in range(episodes_to_watch):
+    for episode in range(episodes):
         game.new_episode()
         while not game.is_episode_finished():
             state = image_preprocessing(game.get_state().screen_buffer)

@@ -29,7 +29,7 @@ def test(game, agent, actions):
         test_scores.mean(), test_scores.std()), "min: %.1f" % test_scores.min(),
           "max: %.1f" % test_scores.max())
 
-def run(game, agent, actions, num_epochs, frame_repeat, steps_per_epoch=0, save_model=False, model_savefile=""):
+def run(game, agent, actions, num_epochs, frame_repeat, steps_per_epoch=0, save_model=False, model_savefile="", testing=False):
     start_time = time()
 
     for epoch in range(num_epochs):
@@ -66,7 +66,8 @@ def run(game, agent, actions, num_epochs, frame_repeat, steps_per_epoch=0, save_
         print("Results: mean: %.1f +/- %.1f," % (train_scores.mean(), train_scores.std()),
               "min: %.1f," % train_scores.min(), "max: %.1f," % train_scores.max())
 
-        test(game, agent, actions)
+        if testing:
+            test(game, agent, actions)
         if save_model:
             print("Saving the network to model file:", model_savefile)
             torch.save(agent.q_net, model_savefile)
