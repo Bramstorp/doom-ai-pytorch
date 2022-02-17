@@ -7,7 +7,7 @@ import torch.optim as optim
 from collections import deque
 import numpy as np
 
-from doom_model import DuelQNet
+from models.dqn.doom_dqn import DQN
 from doom_env import DEVICE
 
 class DQNAgent:
@@ -31,8 +31,8 @@ class DQNAgent:
 
         else:
             print("Initializing new model...")
-            self.q_net = DuelQNet(action_size).to(DEVICE)
-            self.target_net = DuelQNet(action_size).to(DEVICE)
+            self.q_net = DQN(action_size).to(DEVICE)
+            self.target_net = DQN(action_size).to(DEVICE)
 
         self.opt = optim.SGD(self.q_net.parameters(), lr=self.lr)
 

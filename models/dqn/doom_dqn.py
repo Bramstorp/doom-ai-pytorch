@@ -1,8 +1,8 @@
 import torch.nn as nn
 
-class DuelQNet(nn.Module):
+class DQN(nn.Module):
     def __init__(self, available_actions_count):
-        super(DuelQNet, self).__init__()
+        super(DQN, self).__init__()
         self.conv1 = nn.Sequential(
             nn.Conv2d(1, 8, kernel_size=3, stride=2, bias=False),
             nn.BatchNorm2d(8),

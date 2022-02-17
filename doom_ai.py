@@ -5,9 +5,11 @@ from vizdoom import Mode
 from time import sleep
 
 from doom_env import create_doom_env, image_preprocessing
-from doom_run import run
-from doom_agent import DQNAgent
 from helper import plot
+
+# DQN
+from models.dqn.doom_train import run
+from models.dqn.doom_agent import DQNAgent
 
 
 # Q-learing values

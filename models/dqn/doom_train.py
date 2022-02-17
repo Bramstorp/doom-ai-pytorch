@@ -29,7 +29,7 @@ def test(game, agent, actions):
         test_scores.mean(), test_scores.std()), "min: %.1f" % test_scores.min(),
           "max: %.1f" % test_scores.max())
 
-def run(game, agent, actions, num_epochs, frame_repeat, steps_per_epoch=0, save_model=False, model_savefile="", testing=False):
+def train(game, agent, actions, num_epochs, frame_repeat, steps_per_epoch=0, save_model=False, model_savefile="", testing=False):
     start_time = time()
 
     for epoch in range(num_epochs):
