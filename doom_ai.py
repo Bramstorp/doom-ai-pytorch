@@ -8,20 +8,20 @@ from doom_env import create_doom_env, image_preprocessing
 from helper import plot
 
 # DQN
-from models.dqn.doom_train import run
+from models.dqn.doom_train import train
 from models.dqn.doom_agent import DQNAgent
 
 
 # Q-learing values
 learning_rate = 0.00025
 discount_factor = 0.99
-train_epochs = 10
+train_epochs = 50
 learning_steps_per_epoch = 2000
 replay_memory_size = 10000
 batch_size = 64
 frame_repeat = 12
 
-model_savefile = "./trained_models/10/doom-model.pth"
+model_savefile = "./trained_models/50/doom-model.pth"
 config_file_path = "scenarios/deadly_corridor.cfg"
 LOG_DIR = './logs/log_corridor'
 save_model = True
@@ -46,7 +46,7 @@ if __name__ == '__main__':
                      load_model=load_model, model_savefile=model_savefile)
 
     if not skip_learning:
-        agent, game = run(game, agent, actions, num_epochs=train_epochs, frame_repeat=frame_repeat,
+        agent, game = train(game, agent, actions, num_epochs=train_epochs, frame_repeat=frame_repeat,
                           steps_per_epoch=learning_steps_per_epoch, save_model=save_model, model_savefile=model_savefile, testing=testing_after_run)
 
         print("****************************")
