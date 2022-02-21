@@ -30,7 +30,7 @@ skip_learning = False
 show_while_learning = False
 testing_after_run = False
 
-# Testing
+# Testing Episodes to watch
 episodes = 50
 
 if __name__ == '__main__':
