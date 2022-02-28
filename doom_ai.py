@@ -23,7 +23,7 @@ frame_repeat = 12
 
 model_savefile = "./trained_models/50/doom-model.pth"
 config_file_path = "scenarios/deadly_corridor.cfg"
-LOG_DIR = './logs/log_corridor'
+
 save_model = True
 load_model = False
 skip_learning = False
