@@ -13,41 +13,54 @@ from models.dqn.doom_agent import DQNAgent
 
 
 # Q-learing values
-learning_rate = 0.00025
-discount_factor = 0.99
-train_epochs = 50
-learning_steps_per_epoch = 2000
-replay_memory_size = 10000
-batch_size = 64
-frame_repeat = 12
+class Parameters():
+    def __init__(self, learning_rate=0.00025, discount_factor=0.99, train_epochs=1, learning_steps_per_epoch=2000, replay_memory_size=10000, batch_size=64, frame_repeat=12, config_file_path= "scenarios/deadly_corridor.cfg", learing=False, testing=True, episodes=10):
+        self.learning_rate = learning_rate
+        self.discount_factor = discount_factor
+        self.train_epochs = train_epochs
+        self.learning_steps_per_epoch = learning_steps_per_epoch
+        self.replay_memory_size = replay_memory_size
+        self.batch_size = batch_size
+        self.frame_repeat = frame_repeat
 
-model_savefile = "./trained_models/50/doom-model.pth"
-config_file_path = "scenarios/deadly_corridor.cfg"
+        self.model_savefile = f"./trained_models/{train_epochs}/doom-model.pth"
+        self.config_file_path = config_file_path
 
-save_model = True
-load_model = False
-skip_learning = False
-show_while_learning = False
-testing_after_run = False
+        if learing:
+            self.save_model = True
+            self.load_model = False
+            self.skip_learning = False
 
-# Testing Episodes to watch
-episodes = 50
+        if testing:
+            self.save_model = False
+            self.load_model = True
+            self.skip_learning = True
+
+        if not testing and not learing:
+            self.save_model = False
+            self.load_model = False
+            self.skip_learning = False
+
+        # Testing Episodes to watch
+        self.episodes = episodes
+
+
 
 if __name__ == '__main__':
     plot_scores = []
     total_score = 0
+    values = Parameters()
 
-    game = create_doom_env(config_file_path)
+    game = create_doom_env(values.config_file_path)
     numbers_of_available_buttons = game.get_available_buttons_size()
     actions = [list(a) for a in it.product([0, 1], repeat=numbers_of_available_buttons)]
 
-    agent = DQNAgent(len(actions), lr=learning_rate, batch_size=batch_size,
-                     memory_size=replay_memory_size, discount_factor=discount_factor,
-                     load_model=load_model, model_savefile=model_savefile)
+    agent = DQNAgent(len(actions), lr=values.learning_rate, batch_size=values.batch_size,
+                     memory_size=values.replay_memory_size, discount_factor=values.discount_factor,
+                     load_model=values.load_model, model_savefile=values.model_savefile)
 
-    if not skip_learning:
-        agent, game = train(game, agent, actions, num_epochs=train_epochs, frame_repeat=frame_repeat,
-                          steps_per_epoch=learning_steps_per_epoch, save_model=save_model, model_savefile=model_savefile, testing=testing_after_run)
+    if not values.skip_learning:
+        agent, game = train(game, agent, actions, num_epochs=values.train_epochs, frame_repeat=values.frame_repeat,steps_per_epoch=values.learning_steps_per_epoch, save_model=values.save_model, model_savefile=values.model_savefile)
 
         print("****************************")
         print("Training finished")
@@ -58,14 +71,14 @@ if __name__ == '__main__':
     game.set_mode(Mode.ASYNC_PLAYER)
     game.init()
 
-    for episode in range(episodes):
+    for episode in range(values.episodes):
         game.new_episode()
         while not game.is_episode_finished():
             state = image_preprocessing(game.get_state().screen_buffer)
             best_action_index = agent.get_action(state)
 
             game.set_action(actions[best_action_index])
-            for _ in range(frame_repeat):
+            for _ in range(values.frame_repeat):
                 game.advance_action()
 
         sleep(1.0)

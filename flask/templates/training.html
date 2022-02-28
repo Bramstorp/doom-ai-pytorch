@@ -5,8 +5,42 @@
 {% endblock %}
 
 {% block content %}
-<div class="text-center">
-    <a href="/training" class="btn btn-primary">Træning</a>
-    <a href="/testing" class="btn btn-primary">Test</a>
-</div>
+<form class="grid row pt-4" action="/result" method="POST">
+  <div class="col-md-12">
+    <label for="inputEmail4" class="form-label">Scenarios</label>
+    <select class="form-select" aria-label="Default select example">
+      <option value="basic">Basic</option>
+      <option value="deadly_corridor">Deadly corridor</option>
+      <option value="defend_the_center">Defend the center</option>
+    </select>
+  </div>
+  <div class="col-md-6 pt-2">
+    <label for="learning_rate" class="form-label">Learning Rate</label>
+    <input type="number" class="form-control" id="inputEmail4">
+  </div>
+  <div class="col-md-6 pt-2">
+    <label for="discount_factor" class="form-label">Discount factor</label>
+    <input type="number" class="form-control" id="inputEmail4">
+  </div>
+  <div class="col-md-6 pt-2">
+    <label for="train_epochs" class="form-label">Train epochs</label>
+    <input type="number" class="form-control" id="inputEmail4">
+  </div>
+  <div class="col-md-6 pt-2">
+    <label for="inputEmail4" class="form-label">Learning steps per epoch</label>
+    <input type="number" class="form-control" id="inputEmail4">
+  </div>
+  <div class="col-md-4 pt-2">
+    <label for="inputEmail4" class="form-label">Replay memory size</label>
+    <input type="number" class="form-control" id="inputEmail4">
+  </div>
+  <div class="col-md-4 pt-2">
+    <label for="inputEmail4" class="form-label">Batch size</label>
+    <input type="number" class="form-control" id="inputEmail4">
+  </div>
+  <div class="col-md-4 pt-2">
+    <label for="inputEmail4" class="form-label">Frame repeat</label>
+    <input type="number" class="form-control" id="inputEmail4">
+  </div>
+</form>
 {% endblock %}
