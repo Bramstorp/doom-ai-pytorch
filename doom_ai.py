@@ -55,13 +55,8 @@ if __name__ == '__main__':
     numbers_of_available_buttons = game.get_available_buttons_size()
     actions = [list(a) for a in it.product([0, 1], repeat=numbers_of_available_buttons)]
 
-    path = f"/trained_models/{values.train_epochs}"
+    path = f"trained_models/{values.train_epochs}"
     isExist = os.path.exists(path)
-    if not isExist:
-        os.mkdir(path)
-        print("Directory " , path ,  " Created ")
-    else:    
-        print("Directory " , path ,  " already exists")
 
     agent = DQNAgent(len(actions), lr=values.learning_rate, batch_size=values.batch_size,
                      memory_size=values.replay_memory_size, discount_factor=values.discount_factor,
