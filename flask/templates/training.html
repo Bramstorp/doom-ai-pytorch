@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<form class="grid row pt-4" action="/result" method="POST">
+<form class="grid row pt-4" action="/training" method="POST">
   <div class="col-md-12">
     <label for="inputEmail4" class="form-label">Scenarios</label>
     <select class="form-select" aria-label="Default select example">
@@ -41,6 +41,9 @@
   <div class="col-md-4 pt-2">
     <label for="inputEmail4" class="form-label">Frame repeat</label>
     <input type="number" class="form-control" id="inputEmail4">
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary mt-4">Train</button>
   </div>
 </form>
 {% endblock %}

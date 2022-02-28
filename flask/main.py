@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, request
 import test 
 
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -12,9 +13,13 @@ def home():
 def testing():
     return render_template("testing.html")
 
-@app.route('/training',methods=['POST', 'GET'])
-def training():
+@app.route('/training',methods=['GET'])
+def training_get():
     return render_template("training.html")
+
+@app.route('/training',methods=['POST'])
+def training_post():
+    return doom_ai.Parameters()
 
 @app.route('/result',methods=['POST', 'GET'])
 def result():
