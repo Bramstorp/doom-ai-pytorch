@@ -12,6 +12,7 @@ frame_repeat = 12
 test_episodes_per_epoch = 100
 
 def test(game, agent, actions):
+    """Used for testing ai after epoch."""
     print("\nAi Testing...")
     test_scores = []
     for test_episode in trange(test_episodes_per_epoch, leave=False):
@@ -66,8 +67,6 @@ def train(game, agent, actions, num_epochs, frame_repeat, steps_per_epoch=0, sav
         print("Results: mean: %.1f +/- %.1f," % (train_scores.mean(), train_scores.std()),
               "min: %.1f," % train_scores.min(), "max: %.1f," % train_scores.max())
 
-        if testing:
-            test(game, agent, actions)
         if save_model:
             print("Saving the network to model file:", model_savefile)
             torch.save(agent.q_net, model_savefile)

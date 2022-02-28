@@ -1,5 +1,8 @@
 from flask import Flask, render_template, url_for, request
-import test 
+import sys
+sys.path.append('../')
+
+from doom_ai import Parameters
 
 
 app = Flask(__name__)
@@ -19,7 +22,7 @@ def training_get():
 
 @app.route('/training',methods=['POST'])
 def training_post():
-    return doom_ai.Parameters()
+    return Parameters()
 
 @app.route('/result',methods=['POST', 'GET'])
 def result():
