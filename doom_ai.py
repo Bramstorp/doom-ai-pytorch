@@ -14,7 +14,7 @@ from models.dqn.doom_agent import DQNAgent
 
 # Q-learing values
 class Parameters():
-    def __init__(self, learning_rate=0.00025, discount_factor=0.99, train_epochs=5, learning_steps_per_epoch=2000, replay_memory_size=10000, batch_size=64, frame_repeat=12, config_file_path= "scenarios/deadly_corridor.cfg", learing=True, testing=False, episodes=10):
+    def __init__(self, learning_rate=0.00025, discount_factor=0.99, train_epochs=20, learning_steps_per_epoch=2000, replay_memory_size=10000, batch_size=64, frame_repeat=12, config_file_path= "scenarios/deadly_corridor.cfg", learing=False, testing=True, episodes=10):
         self.learning_rate = learning_rate
         self.discount_factor = discount_factor
         self.train_epochs = train_epochs
@@ -43,10 +43,9 @@ class Parameters():
 
         # Testing Episodes to watch
         self.episodes = episodes
-        return None
 
 
-if __name__ == '__main__':
+def run_ai():
     values = Parameters()
 
     plot_scores = []
@@ -94,3 +93,6 @@ if __name__ == '__main__':
             # Plot scored with amount of game + mean
             plot_scores.append(score)
             plot(plot_scores)
+
+    if isExist and not values.skip_learning:
+        print("The model already exist at that epoch so u cannot train")

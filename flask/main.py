@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, request
 import sys
 sys.path.append('../')
 
-from doom_ai import Parameters
+from doom_ai import run_ai
 
 
 app = Flask(__name__)
@@ -22,11 +22,7 @@ def training_get():
 
 @app.route('/training',methods=['POST'])
 def training_post():
-    return Parameters()
-
-@app.route('/result',methods=['POST', 'GET'])
-def result():
-    return test.test()
+    return run_ai()
 
 
 if __name__ == '__main__':
