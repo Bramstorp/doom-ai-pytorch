@@ -5,8 +5,23 @@
 {% endblock %}
 
 {% block content %}
-<div class="text-center">
-    <a href="/training" class="btn btn-primary">Træning</a>
-    <a href="/testing" class="btn btn-primary">Test</a>
-</div>
+<form class="grid row pt-4" action="/training" method="POST">
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Scenarios</label>
+    <select class="form-select" aria-label="Default select example">
+      <option value="basic">Basic</option>
+      <option value="deadly_corridor">Deadly corridor</option>
+      <option value="defend_the_center">Defend the center</option>
+    </select>
+  </div>
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Trained model</label>
+    <select class="form-select" aria-label="Default select example">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="50">50</option>
+    </select>
+  </div>
+</form>
 {% endblock %}
