@@ -12,9 +12,13 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
-@app.route('/testing',methods=['POST', 'GET'])
-def testing():
+@app.route('/testing',methods=['GET'])
+def testing_get():
     return render_template("testing.html")
+
+@app.route('/testing',methods=['POST'])
+def testing_post():
+    return run_ai(testing=True)
 
 @app.route('/training',methods=['GET'])
 def training_get():
