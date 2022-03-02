@@ -46,7 +46,7 @@ class Parameters():
         self.episodes = episodes
 
 
-def run_ai():
+if __name__ == "__main__":
     values = Parameters()
     plot_scores = []
     total_score = 0
