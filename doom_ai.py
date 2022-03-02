@@ -26,7 +26,6 @@ class Parameters():
         self.model_savefile = f"./trained_models/{train_epochs}/doom-model.pth"
         self.config_file_path = os.path.join(vzd.scenarios_path, config_file_path)
 
-
         if learing:
             self.save_model = True
             self.load_model = False
@@ -46,11 +45,9 @@ class Parameters():
         self.episodes = episodes
 
 
-def run_ai(testing=False):
-    print(testing)
-    values = Parameters(testing)
+def run_ai():
+    values = Parameters()
     plot_scores = []
-    total_score = 0
     game = create_doom_env(values.config_file_path)
     numbers_of_available_buttons = game.get_available_buttons_size()
     actions = [list(a) for a in it.product([0, 1], repeat=numbers_of_available_buttons)]
