@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Doom AI Setup{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <a href="/training" class="btn btn-primary">AI Training</a>
+    <a href="/testing" class="btn btn-primary">AI Play Doom</a>
+</div>
+{% endblock %}
