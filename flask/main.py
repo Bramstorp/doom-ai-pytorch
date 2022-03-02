@@ -18,7 +18,7 @@ def testing_get():
 
 @app.route('/testing',methods=['POST'])
 def testing_post():
-    return run_ai(testing=True)
+    return run_ai(True)
 
 @app.route('/training',methods=['GET'])
 def training_get():
